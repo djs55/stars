@@ -1,0 +1,9 @@
+name: stars 
+version: 0.0.1
+synopsis: Parse, print stellar data in OCaml
+obuild-ver: 1
+
+executable parse
+  src-dir: parse
+  main-is: main.ml
+  build-deps: core, async
