@@ -1,0 +1,8 @@
+1. parse the HYG database csv
+2. pick a spatial datastructure to keep the data in (octree? r-tree?)
+3. project onto various 2D planes, for fun
+4. get a WebGL context and try plotting there
+
+Will I be able to load the data incrementally, as (eg) an observer moves through it?
+
+It would be nice to get a generator for larger synthetic datasets to check that the data can be processed reasonably incrementally.
