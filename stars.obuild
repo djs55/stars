@@ -6,4 +6,4 @@ obuild-ver: 1
 executable parse
   src-dir: parse
   main-is: main.ml
-  build-deps: core, async
+  build-deps: core, async, re, re.str

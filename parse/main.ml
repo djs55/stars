@@ -16,10 +16,20 @@ let command =
     Command.Spec.(empty +> anon ("FILE" %: string) ++ uses_async)
     (fun path () ->
       Reader.with_file path ~f:(fun r ->
-        Pipe.iter_without_pushback (Reader.pipe r) ~f:(fun chunk ->
-            Writer.write (Lazy.force Writer.stdout) chunk))
-        >>= fun _ ->
-        return 0
+        let rec loop () =
+          Reader.read_line r
+          >>= function
+          | `Ok line ->
+            let s = Star.of_string line in
+            let txt = match s with None -> "None" | Some s -> Star.to_string s in
+            Writer.write (Lazy.force Writer.stdout) (txt ^ "\n");
+            loop ()
+          | `Eof ->
+            return () in
+        loop ()
+      )
+      >>= fun () ->
+      return 0
     )
 
 let () = Exn.handle_uncaught ~exit:true (fun () -> Command.run command)
