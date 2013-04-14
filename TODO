@@ -1,5 +1,7 @@
-1. parse the HYG database csv
+-1. parse the HYG database csv- (DONE)
 2. pick a spatial datastructure to keep the data in (octree? r-tree?)
+  -- perhaps consider each point to be a path down an octree and store the
+     paths in a trie?
 3. project onto various 2D planes, for fun
 4. get a WebGL context and try plotting there
 
